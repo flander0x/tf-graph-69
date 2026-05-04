@@ -1,26 +1,18 @@
 from graphviz import Digraph
-import os
 
-def create_dependency_graph(parsed_resources, output_dir="output"):
-    """Create a dependency graph from parsed resources using Graphviz."""
-    if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
-    
-    dot = Digraph(comment='Dependency Graph', format='png')
-    dot.attr(rankdir='LR')
-    
-    # Add nodes for each resource
-    for resource in parsed_resources:
-        dot.node(resource['name'], resource['name'])
-    
-    # Add edges for dependencies
-    for resource in parsed_resources:
-        for dependency in resource.get('dependencies', []):
-            if dependency in [r['name'] for r in parsed_resources]:
-                dot.edge(dependency, resource['name'])
-    
-    # Render the graph
-    output_path = os.path.join(output_dir, 'dependency_graph')
-    dot.render(output_path, cleanup=True)
-    
-    return f"{output_path}.png"
+def generate_dependency_graph(resources):
+    """
+    Generate a dependency graph using Graphviz from parsed resources.
+    resources: list of dicts with 'name', 'depends_on' keys
+    """
+    dot = Digraph(comment='Resource Dependency Graph', format='png')
+    dot.attr('node', shape='box', style='rounded', fontname='Arial')
+    dot.attr('edge', arrowhead='vee', fontname='Arial')
+
+    for resource in resources:
+        name = resource['name']
+        dot.node(name, name)
+        for dep in resource.get('depends_on', []):
+            dot.edge(dep, name)
+
+    return dot
