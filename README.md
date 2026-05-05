@@ -1,6 +1,6 @@
 # tf-graph-69
 
-A lightweight Python development tool for visualizing TensorFlow computation graphs using Graphviz. Perfect for debugging and understanding complex neural network architectures.
+A lightweight dev-tool for visualizing TensorFlow computation graphs using Graphviz. Perfect for debugging and understanding complex neural network architectures.
 
 ## Installation
 
@@ -14,14 +14,14 @@ pip install tf-graph-69
 from tf_graph_69 import visualize_graph
 
 # Visualize a TensorFlow graph
-visualize_graph('my_model.pb', output_file='graph.png')
+visualize_graph('model.pb', output_file='graph.png')
 ```
 
 ## License
 
 MIT License
 
-Copyright (c) 2024 tf-graph-69 contributors
+Copyright (c) 2024 tf-graph-69
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
